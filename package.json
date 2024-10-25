@@ -15,6 +15,7 @@
   "license": "MIT",
   "scripts": {
     "lintfix": "eslint src/** --ignore-path .gitignore --fix",
+    "test": "vitest",
     "build": "tsc"
   },
   "keywords": [
@@ -37,6 +38,7 @@
   },
   "devDependencies": {
     "@rollup/pluginutils": "^5.1.0",
+    "@types/node": "^22.7.9",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "eslint": "^8.0.1",
     "eslint-config-standard": "^17.0.0",
@@ -45,6 +47,7 @@
     "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
     "eslint-plugin-promise": "^6.0.0",
     "typescript": "*",
-    "vite": "^5.0.0"
+    "vite": "^5.0.0",
+    "vitest": "^2.1.3"
   }
 }

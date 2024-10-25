@@ -4,7 +4,7 @@
   "description": "Plugin for allowing .json5 and .jsonc files to be loaded.",
   "author": {
     "name": "Tim van Herwijnen",
-    "url": "https://github.com/timyourivh"
+    "url": "https://github.com/sneakylenny"
   },
   "type": "module",
   "main": "dist/index.js",
@@ -26,7 +26,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/timyourivh/vite-plugin-json5"
+    "url": "https://github.com/sneakylenny/vite-plugin-json5"
   },
   "peerDependencies": {
     "vite": "^3.0.0 || ^4.0.0 || ^5.0.0"

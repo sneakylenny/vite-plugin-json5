@@ -1,20 +1,11 @@
 import { describe, it, expect } from 'vitest'
-import { createServer } from 'vite'
-import { json5Plugin } from '../src/index' // Adjust the path to your plugin
-import path from 'path'
+import jsoncData from './json/jsonc_example.jsonc'
+import json5Data from './json/json5_example.json5'
 
 describe('Vite Plugin for JSONC and JSON5', () => {
   it('should import JSONC files correctly', async () => {
-    const server = await createServer({
-      plugins: [json5Plugin()]
-    })
-
-    // Resolve the path to the JSONC file
-    const jsoncFilePath = path.resolve(__dirname, './json/jsonc_example.jsonc')
-    const jsoncContent = await server.ssrLoadModule(jsoncFilePath)
-
-    // Add assertions based on the expected output
-    expect(jsoncContent.default).toEqual({
+    // The JSONC file should already be processed and available via import
+    expect(jsoncData).toEqual({
       name: 'Example JSONC',
       version: '1.0.0',
       description: 'This is an example of a JSONC file.',
@@ -27,21 +18,11 @@ describe('Vite Plugin for JSONC and JSON5', () => {
         maxItems: 100
       }
     })
-
-    await server.close()
   })
 
   it('should import JSON5 files correctly', async () => {
-    const server = await createServer({
-      plugins: [json5Plugin()]
-    })
-
-    // Resolve the path to the JSON5 file
-    const json5FilePath = path.resolve(__dirname, './json/json5_example.json5')
-    const json5Content = await server.ssrLoadModule(json5FilePath)
-
-    // Add assertions based on the expected output
-    expect(json5Content.default).toEqual({
+    // The JSON5 file should already be processed and available via import
+    expect(json5Data).toEqual({
       name: 'Example JSON5',
       version: '1.0.0',
       description: 'This is an example of a JSON5 file.',
@@ -54,7 +35,5 @@ describe('Vite Plugin for JSONC and JSON5', () => {
         maxItems: 100
       }
     })
-
-    await server.close()
   })
 })

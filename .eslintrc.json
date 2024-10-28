@@ -5,10 +5,12 @@
   },
   "extends": "standard-with-typescript",
   "parserOptions": {
+    "project": "./tsconfig.eslint.json",
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "rules": {
-  },
-  "ignorePatterns": ["dist/**/*"]
+  "rules": {},
+  "ignorePatterns": [
+    "dist/**/*"
+  ]
 }

@@ -58,7 +58,9 @@ interface Json5Options {
 }
 ```
 
-#### Developping 🏗️
+#### Contributing 🏗️
+
+A guide for setting up the development environment to allow for easy contributions.
 
 1. Install dependencies:
 
@@ -76,7 +78,7 @@ interface Json5Options {
     ```console
     $ pnpm build
     ```
-1. (optional) Run the playground to test the build
+1. Run the playground to test the build
     ```console
     $ pnpm dev
     ```
@@ -88,6 +90,5 @@ interface Json5Options {
 <small>
 The reason why I created the plugin is because I would like to be able to write comments in my JSON lang files to
 give more context about the translations. The problem was, when I imported a .json5 or .jsonc file it threw errors about needing a custom plugin for
-these types of files. I couldn't find one yet so... here it is! It made me wonder why Vite doesn't
-support it natively.
+these types of files. I couldn't find one yet so... here it is!
 </small>

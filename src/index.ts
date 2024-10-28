@@ -1,11 +1,16 @@
 import JSON5 from 'json5'
 import type { Plugin, JsonOptions } from 'vite'
 import { dataToEsm } from '@rollup/pluginutils'
+import path from 'path'
+import fs from 'fs'
+import JsonToTS from 'json-to-ts'
 
 // Custom JSON filter for Vite
 const json5ExtRE = /\.(jsonc|json5)$/
 
-export interface Json5Options extends JsonOptions {}
+export interface Json5Options extends JsonOptions {
+  typesDir?: string
+}
 
 export function json5Plugin (
   options: Json5Options = {}
@@ -13,7 +18,7 @@ export function json5Plugin (
   let isBuild = false
 
   return {
-    name: 'vite:json5',
+    name: 'vite:json5-plugin',
 
     configResolved (config) {
       // Determine if this is the build phase based on the resolved config
@@ -27,6 +32,28 @@ export function json5Plugin (
         // Parse the JSON5
         const parsed = JSON5.parse(json)
 
+        if (options.typesDir !== undefined && typeof options.typesDir === 'string') {
+          // Get output dir
+          const outputDir = options.typesDir
+
+          // Generate declaration file
+          const declarationFileName = path.basename(id, path.extname(id)) + '.d.ts'
+          const declarationFilePath = path.join(outputDir, declarationFileName)
+          const declarationModulePath = path.relative(process.cwd(), id)
+          const declarationContent = `declare module '*/${declarationModulePath}'{\n${JsonToTS(parsed).join('\n')}\nconst value: RootObject\nexport default value\n}`
+
+          // Ensure the output directory exists
+          fs.mkdirSync(outputDir, { recursive: true })
+          fs.writeFileSync(declarationFilePath, declarationContent)
+
+          return {
+            code: dataToEsm(parsed, {
+              namedExports: options.namedExports
+            }),
+            map: { mappings: '' }
+          }
+        }
+
         if (options.stringify === true) {
           json = JSON.stringify(parsed)
 
@@ -39,6 +66,7 @@ export function json5Plugin (
             }
           } else {
             // For serve, return the stringified result for the browser to parse
+
             return {
               code: `export default JSON.parse(${JSON.stringify(json)})`,
               map: null

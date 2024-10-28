@@ -58,6 +58,29 @@ interface Json5Options {
 }
 ```
 
+#### Developping 🏗️
+
+1. Install dependencies:
+
+    ```console
+    $ pnpm install
+    ```
+
+1. Make changes
+1. Run tests
+
+    ```console
+    $ pnpm test
+    ```
+1. Build when successful
+    ```console
+    $ pnpm build
+    ```
+1. (optional) Run the playground to test the build
+    ```console
+    $ pnpm dev
+    ```
+
 ---
 
 #### Extra 🍕

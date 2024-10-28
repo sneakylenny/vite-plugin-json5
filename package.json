@@ -15,6 +15,7 @@
   "license": "MIT",
   "scripts": {
     "lintfix": "eslint src/** --ignore-path .gitignore --fix",
+    "dev": "vite dev ./playground",
     "test": "vitest",
     "build": "tsc -p tsconfig.prod.json"
   },

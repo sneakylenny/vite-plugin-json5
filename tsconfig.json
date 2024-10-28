@@ -9,6 +9,7 @@
     "tests/**/*",
     "vite.config.ts",
     "vitest.config.ts",
+    "playground/**/*",
   ],
   "exclude": [
     "node_modules",

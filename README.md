@@ -1,8 +1,17 @@
 # 🔌 Vite JSON5 (and JSONC) plugin
+
 Plugin for allowing .json5 and .jsonc files to be loaded.
 
 > [!NOTE]
 > This plugin is merely just a wrapper using the [json5](https://github.com/json5/json5) package. So all the credits for the parsing goes out to the collaborators of that repository! I just made a plugin that allows files to be parsed using their package.
+
+### 📛 Badges
+
+[![npm](https://img.shields.io/npm/v/vite-plugin-json5)](https://www.npmjs.com/package/vite-plugin-json5)
+![npm](https://img.shields.io/npm/dm/vite-plugin-json5)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/sneakylenny/vite-plugin-json5/publish.yml?branch=main)
+![License](https://img.shields.io/github/license/sneakylenny/vite-plugin-json5)
+[![GitHub Repo stars](https://img.shields.io/github/stars/sneakylenny/vite-plugin-json5)](https://github.com/sneakylenny/vite-plugin-json5)
 
 ## 📦 Installation in 3 easy steps:
 
@@ -74,6 +83,7 @@ A guide for setting up the development environment to allow for easy contributio
     ```console
     $ pnpm test
     ```
+
 1. Build when successful
     ```console
     $ pnpm build

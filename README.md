@@ -7,11 +7,11 @@ Plugin for allowing .json5 and .jsonc files to be loaded.
 
 ### 📛 Badges
 
-[![npm](https://img.shields.io/npm/v/vite-plugin-json5)](https://www.npmjs.com/package/vite-plugin-json5)
-![npm](https://img.shields.io/npm/dm/vite-plugin-json5)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/sneakylenny/vite-plugin-json5/publish.yml)
-![License](https://img.shields.io/github/license/sneakylenny/vite-plugin-json5)
-[![GitHub Repo stars](https://img.shields.io/github/stars/sneakylenny/vite-plugin-json5)](https://github.com/sneakylenny/vite-plugin-json5)
+[![npm](https://img.shields.io/npm/v/vite-plugin-json5?style=flat-square)](https://www.npmjs.com/package/vite-plugin-json5)
+![npm](https://img.shields.io/npm/dm/vite-plugin-json5?style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/sneakylenny/vite-plugin-json5/publish.yml?style=flat-square)
+![License](https://img.shields.io/github/license/sneakylenny/vite-plugin-json5?style=flat-square)
+[![GitHub Repo stars](https://img.shields.io/github/stars/sneakylenny/vite-plugin-json5?style=flat-square)](https://github.com/sneakylenny/vite-plugin-json5)
 
 ## 📦 Installation in 3 easy steps:
 

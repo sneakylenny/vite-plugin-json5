@@ -2,10 +2,12 @@
 // @ts-expect-error No time to fix this right now... #TODO: Fix this
 import JsoncFileRaw from '../../../tests/json/jsonc_example.jsonc?raw'
 import JsoncFileResult from '../../../tests/json/jsonc_example.jsonc'
+import { name as propJsonc } from '../../../tests/json/jsonc_example.jsonc'
 
 // @ts-expect-error Same as above
 import Json5FileRaw from '../../../tests/json/json5_example.json5?raw'
 import Json5FileResult from '../../../tests/json/json5_example.json5'
+import { name as propJson5 } from '../../../tests/json/json5_example.json5'
 </script>
 
 <template>
@@ -18,6 +20,7 @@ import Json5FileResult from '../../../tests/json/json5_example.json5'
             <th>File content</th>
             <th>Import result</th>
             <th>Example key (name)</th>
+            <th>Named export (name)</th>
           </tr>
         </thead>
         <tbody>
@@ -30,6 +33,9 @@ import Json5FileResult from '../../../tests/json/json5_example.json5'
             </td>
             <td>
               <pre v-text="JsoncFileResult.name" />
+            </td>
+            <td>
+              <pre v-text="propJsonc" />
             </td>
           </tr>
         </tbody>
@@ -44,6 +50,7 @@ import Json5FileResult from '../../../tests/json/json5_example.json5'
             <th>File content</th>
             <th>Import result</th>
             <th>Example key (name)</th>
+            <th>Named export (name)</th>
           </tr>
         </thead>
         <tbody>
@@ -56,6 +63,9 @@ import Json5FileResult from '../../../tests/json/json5_example.json5'
             </td>
             <td>
               <pre v-text="Json5FileResult.name" />
+            </td>
+            <td>
+              <pre v-text="propJson5" />
             </td>
           </tr>
         </tbody>

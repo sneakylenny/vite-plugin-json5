@@ -5,7 +5,10 @@
   },
   "extends": "standard-with-typescript",
   "parserOptions": {
-    "project": ["./packages/vite-plugin-json5/tsconfig.json"],
+    "project": [
+      "./packages/vite-plugin-json5/tsconfig.json",
+      "./apps/playground/tsconfig.json"
+    ],
     "ecmaVersion": "latest",
     "sourceType": "module"
   },

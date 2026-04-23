@@ -18,7 +18,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.prod.json",
     "test": "vitest run",
-    "lint": "eslint src/** --ignore-path ../../.gitignore --fix"
+    "lint": "eslint src --fix"
   },
   "keywords": [
     "vite",

@@ -25,4 +25,4 @@ tasks:
     command: 'pnpm run lint'
     inputs:
       - 'src/**/*'
-      - '/.eslintrc.json'
+      - '/eslint.config.js'

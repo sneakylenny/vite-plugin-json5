@@ -11,7 +11,7 @@ const identRE = /^[a-zA-Z_$][a-zA-Z0-9_$]*$/
 export type DtsAggregatedOptions = {
   sidecar?: false
   literals?: boolean
-  /** Output path relative to the Vite root. Defaults to `node_modules/.vite-plugin-json5/types.d.ts`. */
+  /** Output path relative to the Vite root. Defaults to `node_modules/@types/__vite-plugin-json5__/index.d.ts`. */
   outFile?: string
 }
 
@@ -29,11 +29,8 @@ export interface Json5Options extends JsonOptions {
    * Pass `true` to enable with defaults, or an options object to choose a mode:
    *
    * - **Aggregated** (default) — all declarations go into a single file
-   *   (`node_modules/.vite-plugin-json5/types.d.ts`). Add it to `files` in
-   *   your `tsconfig.json` to activate:
-   *   ```json
-   *   { "files": ["node_modules/.vite-plugin-json5/types.d.ts"] }
-   *   ```
+   *   (`node_modules/@types/__vite-plugin-json5__/index.d.ts`). TypeScript
+   *   picks this up automatically — no `tsconfig.json` changes needed.
    * - **Sidecar** (`sidecar: true`) — writes a `.d.ts` next to each source
    *   file; TypeScript picks it up automatically, no tsconfig change needed.
    *   Add `*.json5.d.ts` / `*.jsonc.d.ts` to your `.gitignore`.
@@ -128,7 +125,7 @@ export function json5Plugin (
     configResolved (config) {
       isBuild = config.command === 'build'
       if (dtsOpts !== null && dtsOpts.sidecar !== true) {
-        const outFile = dtsOpts.outFile ?? 'node_modules/.vite-plugin-json5/types.d.ts'
+        const outFile = dtsOpts.outFile ?? 'node_modules/@types/__vite-plugin-json5__/index.d.ts'
         dtsOutFile = resolve(config.root, outFile)
       }
     },

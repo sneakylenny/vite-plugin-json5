@@ -90,13 +90,10 @@ There are two modes:
 
 ---
 
-**Aggregated mode** (default) — all declarations are collected into a single file at `node_modules/.vite-plugin-json5/types.d.ts`. This path is already ignored by virtually every `.gitignore`, so nothing leaks into your repository. Add the file to `files` in your `tsconfig.json` once to activate it (`files` overrides `exclude`, which is why it works even with `node_modules` excluded):
+**Aggregated mode** (default) — all declarations are collected into a single file at `node_modules/@types/__vite-plugin-json5__/index.d.ts`. TypeScript picks this up automatically via its default type roots — no `tsconfig.json` changes needed. The file is already gitignored.
 
-```json
-{
-    "files": ["node_modules/.vite-plugin-json5/types.d.ts"]
-}
-```
+> [!NOTE]
+> If your `tsconfig.json` has an explicit `"types"` array (e.g. `"types": ["vite/client"]`), add `"__vite-plugin-json5__"` to it.
 
 ---
 

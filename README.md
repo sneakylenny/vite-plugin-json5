@@ -70,11 +70,10 @@ interface Json5Options {
      */
     dts?:
         | boolean
-        | {
-              literals?: boolean;
-              sidecar?: boolean;
-              outFile?: string;
-          };
+        // Aggregated mode (default): all declarations in one file
+        | { sidecar?: false; literals?: boolean; outFile?: string }
+        // Sidecar mode: one .d.ts file next to each source file
+        | { sidecar: true; literals?: boolean };
 }
 ```
 

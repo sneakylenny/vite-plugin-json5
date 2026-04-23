@@ -1,0 +1,27 @@
+$schema: 'https://moonrepo.dev/schemas/project.json'
+
+language: typescript
+type: application
+
+dependsOn:
+  - 'vite-plugin-json5'
+
+tasks:
+  dev:
+    command: 'pnpm run dev'
+    preset: server
+    deps:
+      - 'vite-plugin-json5:build'
+    inputs:
+      - 'src/**/*'
+      - 'vite.config.ts'
+
+  build:
+    command: 'pnpm run build'
+    deps:
+      - 'vite-plugin-json5:build'
+    inputs:
+      - 'src/**/*'
+      - 'vite.config.ts'
+    outputs:
+      - 'dist'

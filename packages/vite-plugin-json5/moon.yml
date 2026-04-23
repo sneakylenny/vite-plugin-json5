@@ -1,0 +1,28 @@
+$schema: 'https://moonrepo.dev/schemas/project.json'
+
+language: typescript
+type: library
+
+tasks:
+  build:
+    command: 'pnpm run build'
+    inputs:
+      - 'src/**/*'
+      - 'types/**/*'
+      - 'tsconfig.json'
+      - 'tsconfig.prod.json'
+    outputs:
+      - 'dist'
+
+  test:
+    command: 'pnpm run test'
+    inputs:
+      - 'src/**/*'
+      - 'tests/**/*'
+      - 'vitest.config.ts'
+
+  lint:
+    command: 'pnpm run lint'
+    inputs:
+      - 'src/**/*'
+      - '/.eslintrc.json'

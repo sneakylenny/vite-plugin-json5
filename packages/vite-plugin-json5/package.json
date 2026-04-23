@@ -1,0 +1,50 @@
+{
+  "name": "vite-plugin-json5",
+  "version": "1.3.0",
+  "description": "Plugin for allowing .json5 and .jsonc files to be loaded.",
+  "author": {
+    "name": "Tim van Herwijnen",
+    "url": "https://github.com/sneakylenny"
+  },
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "types"
+  ],
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "tsc -p tsconfig.prod.json",
+    "test": "vitest run",
+    "lint": "eslint src/** --ignore-path ../../.gitignore --fix"
+  },
+  "keywords": [
+    "vite",
+    "vite-plugin",
+    "json5",
+    "jsonc",
+    "json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sneakylenny/vite-plugin-json5.git"
+  },
+  "peerDependencies": {
+    "vite": "^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0"
+  },
+  "dependencies": {
+    "@rollup/pluginutils": "^5.1.3",
+    "json5": "^2.2.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vue/test-utils": "^2.4.6",
+    "happy-dom": "^15.11.7",
+    "vite": "^8.0.9",
+    "vitest": "^2.1.8",
+    "vue": "^3.5.13"
+  }
+}

@@ -1,0 +1,18 @@
+{
+    // This is a comment
+    "name": "Example JSONC",
+    "version": "1.0.0",
+    "description": "This is an example of a JSONC file.",
+    "dependencies": {
+        "library1": "^1.0.0", // This is a dependency
+        "library2": "^2.0.0"
+    },
+    /*
+   * Multi-line comment
+   * explaining the purpose of this object
+   */
+    "settings": {
+        "enabled": true,
+        "maxItems": 100
+    }
+}

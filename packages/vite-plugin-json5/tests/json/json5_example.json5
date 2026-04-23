@@ -1,0 +1,15 @@
+{
+    // This is a comment
+    name: 'Example JSON5',
+    version: '1.0.0',
+    description: 'This is an example of a JSON5 file.',
+    dependencies: {
+        library1: '^1.0.0', // This is a dependency
+        library2: '^2.0.0'
+    },
+    // JSON5 allows trailing commas
+    settings: {
+        enabled: true,
+        maxItems: 100, // Trailing comma is allowed
+    }
+}

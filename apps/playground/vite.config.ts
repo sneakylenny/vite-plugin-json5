@@ -1,5 +1,5 @@
 import vuePlugin from '@vitejs/plugin-vue'
-import json5Plugin from '../dist'
+import json5Plugin from 'vite-plugin-json5'
 import { defineConfig } from 'vite'
 
 export default defineConfig({

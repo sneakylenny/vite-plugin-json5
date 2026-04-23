@@ -4,3 +4,9 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+.moon/cache
+*.tsbuildinfo
+.DS_Store
+.env
+.env.*
+!.env.example

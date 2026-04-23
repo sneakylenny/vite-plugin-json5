@@ -7,9 +7,7 @@
     "src/**/*",
     "types/**/*",
     "tests/**/*",
-    "vite.config.ts",
-    "vitest.config.ts",
-    "playground/**/*",
+    "vitest.config.ts"
   ],
   "exclude": [
     "node_modules",

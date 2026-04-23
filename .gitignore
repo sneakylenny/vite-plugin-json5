@@ -10,3 +10,5 @@ yarn-error.log
 .env
 .env.*
 !.env.example
+*.json5.d.ts
+*.jsonc.d.ts

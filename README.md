@@ -135,6 +135,11 @@ export declare const version: "1.0.0";
 json5Plugin({ dts: { outFile: "src/types/json5.d.ts" } });
 ```
 
+---
+
+> [!NOTE]
+> In Vite's dev server, type declarations are generated **lazily** — the file is written the first time a JSON5/JSONC module is actually loaded by the browser. Open the page once and the file persists on disk across server restarts. Running `vite build` always generates types upfront.
+
 #### Contributing 🏗️
 
 A guide for setting up the development environment to allow for easy contributions.

@@ -15,7 +15,7 @@ Plugin for allowing .json5 and .jsonc files to be loaded.
 
 ## 📦 Installation in 3 easy steps:
 
-#### 1. Install the package into to your project
+### 1. Install the package into to your project
 
 ```bash
 # PNPM:
@@ -28,7 +28,7 @@ yarn add -D vite-plugin-json5
 npm install -D vite-plugin-json5
 ```
 
-#### 2. Add it to your vite config
+### 2. Add it to your vite config
 
 ```js
 // vite.config.js
@@ -42,14 +42,14 @@ export default defineConfig({
 })
 ```
 
-#### 3. That's it 🎉
+### 3. That's it 🎉
 
 You are now able to import files with the .jsonc and .json5 extensions!
 These will be parsed by the json5 package and turned into a regular js that the app will be able to read and not get confused by.
 
-#### Options ⚙️
+### Options ⚙️
 
-This plugin accepts the same options as [the default JSON parser](https://github.com/vitejs/vite/blob/main/packages/vite/src/node/plugins/json.ts):
+This plugin accepts the same options as [the default JSON parser](https://github.com/vitejs/vite/blob/main/packages/vite/src/node/plugins/json.ts), plus a `dts` option for automatic TypeScript type generation:
 
 ```ts
 interface Json5Options {
@@ -64,7 +64,76 @@ interface Json5Options {
      * @default false
      */
     stringify?: boolean;
+    /**
+     * Automatically generate TypeScript declarations for imported
+     * JSON5/JSONC files. See the TypeScript types section below.
+     */
+    dts?:
+        | boolean
+        | {
+              literals?: boolean;
+              sidecar?: boolean;
+              outFile?: string;
+          };
 }
+```
+
+#### TypeScript types 🔷
+
+Enable the `dts` option to have the plugin automatically generate TypeScript declarations for every JSON5/JSONC file you import. No more `any` — you get full type safety and autocompletion, inferred directly from the file's contents.
+
+```ts
+// vite.config.ts
+json5Plugin({ dts: true });
+```
+
+There are two modes:
+
+---
+
+**Aggregated mode** (default) — all declarations are collected into a single file at `node_modules/.vite-plugin-json5/types.d.ts`. This path is already ignored by virtually every `.gitignore`, so nothing leaks into your repository. Add the file to `files` in your `tsconfig.json` once to activate it (`files` overrides `exclude`, which is why it works even with `node_modules` excluded):
+
+```json
+{
+    "files": ["node_modules/.vite-plugin-json5/types.d.ts"]
+}
+```
+
+---
+
+**Sidecar mode** — writes a `.d.ts` file next to each source file (e.g. `config.json5.d.ts` beside `config.json5`). TypeScript picks these up automatically via module resolution — no `tsconfig.json` changes needed. Enable it with `sidecar: true` and add the generated files to your `.gitignore`:
+
+```ts
+json5Plugin({ dts: { sidecar: true } });
+```
+
+```gitignore
+*.json5.d.ts
+*.jsonc.d.ts
+```
+
+---
+
+**Literal types** — by default, values are widened to their primitive type (`string`, `number`, `boolean`). Pass `literals: true` to use exact literal types instead:
+
+```ts
+json5Plugin({ dts: { literals: true } });
+```
+
+```ts
+// Without literals (default)
+export declare const version: string;
+
+// With literals: true
+export declare const version: "1.0.0";
+```
+
+---
+
+**Custom output path** (aggregated mode only) — change where the aggregated file is written using `outFile`, relative to the Vite root:
+
+```ts
+json5Plugin({ dts: { outFile: "src/types/json5.d.ts" } });
 ```
 
 #### Contributing 🏗️
@@ -92,13 +161,3 @@ A guide for setting up the development environment to allow for easy contributio
     ```console
     $ pnpm dev
     ```
-
----
-
-#### Extra 🍕
-
-<small>
-The reason why I created the plugin is because I would like to be able to write comments in my JSON lang files to
-give more context about the translations. The problem was, when I imported a .json5 or .jsonc file it threw errors about needing a custom plugin for
-these types of files. I couldn't find one yet so... here it is!
-</small>

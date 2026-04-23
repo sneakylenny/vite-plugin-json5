@@ -1,10 +1,8 @@
 <script setup lang="ts">
-// @ts-expect-error No time to fix this right now... #TODO: Fix this
 import JsoncFileRaw from '@fixtures/jsonc_example.jsonc?raw'
 import JsoncFileResult from '@fixtures/jsonc_example.jsonc'
 import { name as propJsonc } from '@fixtures/jsonc_example.jsonc'
 
-// @ts-expect-error Same as above
 import Json5FileRaw from '@fixtures/json5_example.json5?raw'
 import Json5FileResult from '@fixtures/json5_example.json5'
 import { name as propJson5 } from '@fixtures/json5_example.json5'

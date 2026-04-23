@@ -11,6 +11,9 @@
       "@fixtures/*": ["../../packages/vite-plugin-json5/tests/json/*"]
     }
   },
+  "files": [
+    "node_modules/.vite-plugin-json5/types.d.ts"
+  ],
   "include": [
     "src/**/*",
     "vite.config.ts",

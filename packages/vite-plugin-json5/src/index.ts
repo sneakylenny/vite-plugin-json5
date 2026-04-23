@@ -8,7 +8,7 @@ const json5ExtRE = /\.(jsonc|json5)$/
 const identRE = /^[a-zA-Z_$][a-zA-Z0-9_$]*$/
 
 /** Options for aggregated DTS mode (default). */
-export type DtsAggregatedOptions = {
+export interface DtsAggregatedOptions {
   sidecar?: false
   literals?: boolean
   /** Output path relative to the Vite root. Defaults to `node_modules/@types/__vite-plugin-json5__/index.d.ts`. */
@@ -16,7 +16,7 @@ export type DtsAggregatedOptions = {
 }
 
 /** Options for sidecar DTS mode. `outFile` is not available in this mode. */
-export type DtsSidecarOptions = {
+export interface DtsSidecarOptions {
   sidecar: true
   literals?: boolean
 }
@@ -108,9 +108,10 @@ function writeDtsFile (outFile: string, declarations: Map<string, string>): void
 export function json5Plugin (
   options: Json5Options = {}
 ): Plugin {
-  const dtsOpts: DtsAggregatedOptions | DtsSidecarOptions | null = options.dts
-    ? (typeof options.dts === 'object' ? options.dts : {})
-    : null
+  const dtsOpts: DtsAggregatedOptions | DtsSidecarOptions | null =
+    options.dts === undefined || options.dts === false
+      ? null
+      : typeof options.dts === 'object' ? options.dts : {}
   const dtsLiterals = dtsOpts?.literals === true
   const dtsSidecar = dtsOpts?.sidecar === true
 
@@ -138,7 +139,7 @@ export function json5Plugin (
           // Skip absolute/filesystem paths — only capture user-written specifiers
           if (id.startsWith('/') || /^[A-Za-z]:[/\\]/.test(id)) return null
           const resolved = await this.resolve(id, importer, { skipSelf: true })
-          if (resolved && !resolved.external) {
+          if (resolved !== null && resolved.external === false) {
             const set = specifiersFor.get(resolved.id) ?? new Set<string>()
             set.add(id)
             specifiersFor.set(resolved.id, set)

@@ -33,6 +33,14 @@ jobs:
       - name: Build package
         run: pnpm --filter vite-plugin-json5 run build
 
+      - name: Pack package
+        run: pnpm --filter vite-plugin-json5 pack --pack-destination /tmp/npm-pack
+
+      - name: Upload package to release
+        run: gh release upload ${{ github.event.release.tag_name }} /tmp/npm-pack/*.tgz
+        env:
+          GH_TOKEN: ${{ github.token }}
+
       - name: Publish to NPM
         run: pnpm --filter vite-plugin-json5 publish --no-git-checks
         env:

@@ -25,3 +25,12 @@ tasks:
       - 'vite.config.ts'
     outputs:
       - 'dist'
+
+  lint:
+    command: 'pnpm run lint'
+    deps:
+      - 'vite-plugin-json5:lint'
+    inputs:
+      - 'src/**/*'
+      - 'vite.config.ts'
+      - 'eslint.config.js'

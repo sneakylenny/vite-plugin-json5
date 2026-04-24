@@ -1,12 +1,17 @@
 // @ts-check
-import { defineConfig, globalIgnores } from 'eslint/config'
+import { globalIgnores } from 'eslint/config'
 import tseslint from 'typescript-eslint'
 import eslintPluginVue from 'eslint-plugin-vue'
 import stylistic from '@stylistic/eslint-plugin'
+import {
+  defineConfigWithVueTs,
+  vueTsConfigs,
+} from '@vue/eslint-config-typescript'
 
-export default defineConfig([
+export default defineConfigWithVueTs([
   tseslint.configs.strict,
   eslintPluginVue.configs['flat/recommended'],
+  vueTsConfigs.recommended,
   stylistic.configs.recommended,
   {
     plugins: {

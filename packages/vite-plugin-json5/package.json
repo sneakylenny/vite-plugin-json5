@@ -18,7 +18,8 @@
   "scripts": {
     "build": "tsc -p tsconfig.prod.json",
     "test": "vitest run",
-    "lint": "eslint src --fix"
+    "lint": "eslint src --fix",
+    "prepublishOnly": "cp ../../README.md README.md"
   },
   "keywords": [
     "vite",

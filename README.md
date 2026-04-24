@@ -1,11 +1,4 @@
-# 🔌 Vite JSON5 (and JSONC) plugin
-
-Plugin for allowing .json5 and .jsonc files to be loaded.
-
-> [!NOTE]
-> This plugin is merely just a wrapper using the [json5](https://github.com/json5/json5) package. So all the credits for the parsing goes out to the collaborators of that repository! I just made a plugin that allows files to be parsed using their package.
-
-### 📛 Badges
+# Vite JSON5 (and JSONC) plugin
 
 [![npm](https://img.shields.io/npm/v/vite-plugin-json5?style=flat-square)](https://www.npmjs.com/package/vite-plugin-json5)
 ![npm](https://img.shields.io/npm/dm/vite-plugin-json5?style=flat-square)
@@ -13,41 +6,41 @@ Plugin for allowing .json5 and .jsonc files to be loaded.
 ![License](https://img.shields.io/github/license/sneakylenny/vite-plugin-json5?style=flat-square)
 [![GitHub Repo stars](https://img.shields.io/github/stars/sneakylenny/vite-plugin-json5?style=flat-square)](https://github.com/sneakylenny/vite-plugin-json5)
 
-## 📦 Installation in 3 easy steps:
+A Vite plugin that wraps [`json5`](https://github.com/json5/json5) to allow .json5 and .jsonc files to be loaded.
 
-### 1. Install the package into to your project
+## Installation
+
+#### 1. Install the package
 
 ```bash
-# PNPM:
+# pnpm
 pnpm add -D vite-plugin-json5
 
-# Yarn:
+# yarn
 yarn add -D vite-plugin-json5
 
-# NPM:
+# npm
 npm install -D vite-plugin-json5
 ```
 
-### 2. Add it to your vite config
+#### 2. Add it to your Vite config
 
 ```js
 // vite.config.js
-
-import json5Plugin from 'vite-plugin-json5'
+import json5Plugin from "vite-plugin-json5";
 // or
-import { json5Plugin } from 'vite-plugin-json5'
+import { json5Plugin } from "vite-plugin-json5";
 
 export default defineConfig({
-  json5Plugin()
-})
+    plugins: [json5Plugin()],
+});
 ```
 
-### 3. That's it 🎉
+#### 3. Done
 
-You are now able to import files with the .jsonc and .json5 extensions!
-These will be parsed by the json5 package and turned into a regular js that the app will be able to read and not get confused by.
+`.json5` and `.jsonc` files can now be imported directly. They are parsed by the [`json5`](https://github.com/json5/json5) package and transformed into standard JavaScript modules.
 
-### Options ⚙️
+### Options
 
 This plugin accepts the same options as [the default JSON parser](https://github.com/vitejs/vite/blob/main/packages/vite/src/node/plugins/json.ts), plus a `dts` option for automatic TypeScript type generation:
 
@@ -77,7 +70,10 @@ interface Json5Options {
 }
 ```
 
-#### TypeScript types 🔷
+### TypeScript types
+
+> [!NOTE]
+> In Vite's dev server, type declarations are generated **lazily** — the file is written the first time a JSON5/JSONC module is actually requested. Open the page once and the file persists on disk across server restarts. Running `vite build` always generates types upfront.
 
 Enable the `dts` option to have the plugin automatically generate TypeScript declarations for every JSON5/JSONC file you import. No more `any` — you get full type safety and autocompletion, inferred directly from the file's contents.
 
@@ -97,11 +93,25 @@ There are two modes:
 
 ---
 
-**Sidecar mode** — writes a `.d.ts` file next to each source file (e.g. `config.json5.d.ts` beside `config.json5`). TypeScript picks these up automatically via module resolution — no `tsconfig.json` changes needed. Enable it with `sidecar: true` and add the generated files to your `.gitignore`:
+**Sidecar mode** — writes a `.d.ts` file next to each source file (e.g. `config.json5.d.ts` beside `config.json5`). TypeScript picks these up automatically via module resolution — no `tsconfig.json` changes needed.
+
+Example:
+
+```
+src/
+├── config.json5
+├── config.json5.d.ts   ← generated
+├── theme.jsonc
+└── theme.jsonc.d.ts    ← generated
+```
+
+Enable it with `sidecar: true` and add the generated files to your `.gitignore`:
 
 ```ts
 json5Plugin({ dts: { sidecar: true } });
 ```
+
+Add the signature of the generated files to the git ignore to prevent them from being pushed to your repository:
 
 ```gitignore
 *.json5.d.ts
@@ -134,10 +144,7 @@ json5Plugin({ dts: { outFile: "src/types/json5.d.ts" } });
 
 ---
 
-> [!NOTE]
-> In Vite's dev server, type declarations are generated **lazily** — the file is written the first time a JSON5/JSONC module is actually loaded by the browser. Open the page once and the file persists on disk across server restarts. Running `vite build` always generates types upfront.
-
-#### Contributing 🏗️
+### Contributing
 
 A guide for setting up the development environment to allow for easy contributions.
 
@@ -149,13 +156,11 @@ This repo uses [proto](https://moonrepo.dev/proto) for toolchain management and 
     $ proto install
     ```
 
-1. Start the dev server:
+1. Install dependencies:
 
     ```console
-    $ moon run :dev
+    $ pnpm install
     ```
-
-    Dependencies should be automatically installed
 
 1. Make changes
 1. Run tests

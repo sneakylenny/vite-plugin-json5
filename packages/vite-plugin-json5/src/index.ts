@@ -10,6 +10,8 @@ export type { Json5Options } from './transform.js'
 
 const json5ExtRE = /\.(jsonc|json5)$/
 
+type AliasEntry = { find: string | RegExp, replacement: string }
+
 export function json5Plugin(
   options: Json5Options = {},
 ): Plugin {
@@ -22,6 +24,7 @@ export function json5Plugin(
 
   let isBuild = false
   let dtsOutFile: string | null = null
+  let aliases: AliasEntry[] = []
   const specifiersFor = new Map<string, Set<string>>()
   const declarations = new Map<string, string>()
 
@@ -33,6 +36,9 @@ export function json5Plugin(
       if (dtsOpts !== null && dtsOpts.sidecar !== true) {
         const outFile = dtsOpts.outFile ?? 'node_modules/@types/__vite-plugin-json5__/index.d.ts'
         dtsOutFile = resolve(config.root, outFile)
+      }
+      if (Array.isArray(config.resolve?.alias)) {
+        aliases = config.resolve.alias
       }
     },
 
@@ -66,10 +72,27 @@ export function json5Plugin(
             writeFileSync(`${id}.d.ts`, generateSidecarContent(parsed, namedExports, dtsLiterals), 'utf-8')
           }
           else if (dtsOutFile !== null) {
+            let didAddDecl = false
             for (const specifier of specifiersFor.get(id) ?? []) {
               declarations.set(specifier, generateModuleBlock(specifier, parsed, namedExports, dtsLiterals))
+              didAddDecl = true
             }
-            if (specifiersFor.has(id)) {
+            // In Vite dev mode, the built-in alias plugin resolves aliases before user
+            // resolveId hooks run, so specifiersFor is never populated for aliased imports.
+            // Reverse-map the resolved path through the alias config as a fallback.
+            if (!didAddDecl) {
+              for (const alias of aliases) {
+                if (typeof alias.find !== 'string') continue
+                const rep = alias.replacement.replace(/[/\\]+$/, '')
+                if (id.startsWith(rep + '/') || id.startsWith(rep + '\\')) {
+                  const specifier = `${alias.find.replace(/[/\\]+$/, '')}/${id.slice(rep.length + 1)}`
+                  declarations.set(specifier, generateModuleBlock(specifier, parsed, namedExports, dtsLiterals))
+                  didAddDecl = true
+                  break
+                }
+              }
+            }
+            if (didAddDecl) {
               writeDtsFile(dtsOutFile, declarations)
             }
           }

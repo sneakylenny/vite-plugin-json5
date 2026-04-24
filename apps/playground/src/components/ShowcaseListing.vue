@@ -34,7 +34,7 @@ defineProps<{
         </p>
         <CodeBlock
           :code="raw"
-          :language="extension"
+          language="json"
         />
       </section>
       <section class="p-5 min-w-0">

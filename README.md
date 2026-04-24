@@ -141,24 +141,37 @@ json5Plugin({ dts: { outFile: "src/types/json5.d.ts" } });
 
 A guide for setting up the development environment to allow for easy contributions.
 
-1. Install dependencies:
+This repo uses [proto](https://moonrepo.dev/proto) for toolchain management and [moon](https://moonrepo.dev/moon) as the task runner.
+
+1. Install proto by following the [proto install guide](https://moonrepo.dev/docs/proto/install). Then install the required tools (Node.js, pnpm, and moon) from the repo root:
 
     ```console
-    $ pnpm install
+    $ proto install
     ```
+
+1. Start the dev server:
+
+    ```console
+    $ moon run :dev
+    ```
+
+    Dependencies should be automatically installed
 
 1. Make changes
 1. Run tests
 
     ```console
-    $ pnpm test
+    $ moon run vite-plugin-json5:test
     ```
 
 1. Build when successful
+
     ```console
-    $ pnpm build
+    $ moon run vite-plugin-json5:build
     ```
+
 1. Run the playground to test the build
+
     ```console
-    $ pnpm dev
+    $ moon run playground:dev
     ```

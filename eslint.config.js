@@ -25,7 +25,7 @@ export default defineConfigWithVueTs([
     },
     rules: {
       'vue/multi-word-component-names': 'off',
-    }
+    },
   },
   globalIgnores(['**/dist/**/*']),
 ])

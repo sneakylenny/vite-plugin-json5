@@ -3,7 +3,7 @@ import Playground from './components/Playground.vue'
 </script>
 
 <template>
-  <div id="app">
+  <main class="min-h-screen">
     <Playground />
-  </div>
+  </main>
 </template>

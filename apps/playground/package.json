@@ -8,9 +8,14 @@
     "lint": "eslint . --fix"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.2.4",
+    "prism-themes": "^1.9.0",
+    "prismjs": "^1.30.0",
+    "tailwindcss": "^4.2.4",
     "vite-plugin-json5": "workspace:*"
   },
   "devDependencies": {
+    "@types/prismjs": "^1.26.6",
     "@vitejs/plugin-vue": "^6.0.1",
     "vite": "^8.0.10",
     "vue": "^3.5.33"

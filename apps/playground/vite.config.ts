@@ -6,12 +6,12 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [vuePlugin(), json5Plugin({
     dts: {
-      literals: true
-    }
+      literals: true,
+    },
   })],
   resolve: {
     alias: {
-      '@fixtures': resolve(__dirname, '../../packages/vite-plugin-json5/tests/json')
-    }
-  }
+      '@fixtures': resolve(__dirname, '../../packages/vite-plugin-json5/tests/json'),
+    },
+  },
 })

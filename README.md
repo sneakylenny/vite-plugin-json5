@@ -197,4 +197,4 @@ This repo uses [proto](https://moonrepo.dev/proto) for toolchain management and 
     $ moon run playground:dev
     ```
 
-Releases are automated with [changesets](https://github.com/changesets/changesets). Merging PRs that include changesets onto `dev` opens a **Version Packages** PR; merging that PR publishes `vite-plugin-json5` to npm and creates a GitHub Release. See [`.changeset/README.md`](.changeset/README.md).
+Releases are automated with [changesets](https://github.com/changesets/changesets). Development lands on `dev`; merging `dev` → `main` (or committing directly to `main`) runs the release workflow, which opens a **Version Packages** PR — merge that to publish. See [`.changeset/README.md`](.changeset/README.md).

@@ -6,9 +6,14 @@
     "build": "moon run :build",
     "test": "moon run :test",
     "lint": "moon run :lint",
-    "dev": "moon run playground:dev"
+    "dev": "moon run playground:dev",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "pnpm --filter vite-plugin-json5 run build && changeset publish"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^1.0.1",
+    "@changesets/cli": "^3.0.3",
     "@eslint/js": "^10.0.1",
     "@stylistic/eslint-plugin": "^5.10.0",
     "@vue/eslint-config-typescript": "^14.7.0",

@@ -11,8 +11,9 @@ export interface Json5Options extends JsonOptions {
    * Pass `true` to enable with defaults, or an options object to choose a mode:
    *
    * - **Aggregated** (default) — all declarations go into a single file
-   *   (`node_modules/@types/__vite-plugin-json5__/index.d.ts`). TypeScript
-   *   picks this up automatically — no `tsconfig.json` changes needed.
+   *   (`node_modules/@types/vite-plugin-json5/index.d.ts`). Add
+   *   `"vite-plugin-json5"` to your tsconfig `"types"` array so
+   *   TypeScript loads the generated declarations.
    * - **Sidecar** (`sidecar: true`) — writes a `.d.ts` next to each source
    *   file; TypeScript picks it up automatically, no tsconfig change needed.
    *   Add `*.json5.d.ts` / `*.jsonc.d.ts` to your `.gitignore`.

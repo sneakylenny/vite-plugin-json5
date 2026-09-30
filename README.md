@@ -86,10 +86,19 @@ There are two modes:
 
 ---
 
-**Aggregated mode** (default) — all declarations are collected into a single file at `node_modules/@types/__vite-plugin-json5__/index.d.ts`. TypeScript picks this up automatically via its default type roots — no `tsconfig.json` changes needed. The file is already gitignored.
+**Aggregated mode** (default) — all declarations are collected into a single file at `node_modules/@types/vite-plugin-json5/index.d.ts`.
 
-> [!NOTE]
-> If your `tsconfig.json` has an explicit `"types"` array (e.g. `"types": ["vite/client"]`), add `"__vite-plugin-json5__"` to it.
+For auto-generated types to work, add `"vite-plugin-json5"` to your `tsconfig.json` `"types"` array:
+
+```json
+{
+  "compilerOptions": {
+    "types": ["vite-plugin-json5"]
+  }
+}
+```
+
+If you already have a `"types"` array (e.g. `"types": ["vite/client"]`), append `"vite-plugin-json5"` to it.
 
 ---
 

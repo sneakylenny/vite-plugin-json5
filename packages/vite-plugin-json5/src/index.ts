@@ -34,7 +34,7 @@ export function json5Plugin(
     configResolved(config) {
       isBuild = config.command === 'build'
       if (dtsOpts !== null && dtsOpts.sidecar !== true) {
-        const outFile = dtsOpts.outFile ?? 'node_modules/@types/__vite-plugin-json5__/index.d.ts'
+        const outFile = dtsOpts.outFile ?? 'node_modules/@types/vite-plugin-json5/index.d.ts'
         dtsOutFile = resolve(config.root, outFile)
       }
       if (Array.isArray(config.resolve?.alias)) {

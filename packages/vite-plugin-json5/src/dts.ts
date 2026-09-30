@@ -5,7 +5,11 @@ import { dirname } from 'node:path'
 export interface DtsAggregatedOptions {
   sidecar?: false
   literals?: boolean
-  /** Output path relative to the Vite root. Defaults to `node_modules/@types/__vite-plugin-json5__/index.d.ts`. */
+  /**
+   * Output path relative to the Vite root.
+   * Defaults to `node_modules/@types/vite-plugin-json5/index.d.ts`.
+   * Consumers should list `"vite-plugin-json5"` in tsconfig `"types"`.
+   */
   outFile?: string
 }
 
